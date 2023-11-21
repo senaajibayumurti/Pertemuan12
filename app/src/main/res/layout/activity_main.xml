@@ -40,8 +40,8 @@
             android:layout_weight="1"
             android:layout_marginStart="8dp"
 
-            android:id="@+id/btn_update"
-            android:text="Update Data"/>
+            android:id="@+id/btn_delete"
+            android:text="Kosongkan Data"/>
     </LinearLayout>
 
     <ListView

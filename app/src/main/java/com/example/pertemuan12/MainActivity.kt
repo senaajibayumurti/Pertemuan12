@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 etTitle.setText(item.title)
                 etDesc.setText(item.description)
             }
-            btnUpdate.setOnClickListener {
+            btnDelete.setOnClickListener {
                 update(
                     Note(
                     id = updateId,
