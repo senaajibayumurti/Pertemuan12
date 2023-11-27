@@ -15,6 +15,6 @@ interface ToDoDao {
     @Delete
     fun delete(toDo: ToDo)
 
-    @get:Query("SELECT * from note_table ORDER BY id ASC")
+    @get:Query("SELECT * from todo_table ORDER BY id ASC")
     val allToDo: LiveData<List<ToDo>>
 }

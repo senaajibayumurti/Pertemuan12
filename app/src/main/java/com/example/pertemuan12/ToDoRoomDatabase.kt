@@ -15,7 +15,7 @@ abstract class ToDoRoomDatabase : RoomDatabase(){
             if (INSTANCE == null){
                 synchronized(ToDoRoomDatabase::class.java){
                     INSTANCE = databaseBuilder(context.applicationContext,
-                    ToDoRoomDatabase::class.java, "note_database").build()
+                    ToDoRoomDatabase::class.java, "todo_database").build()
                 }
             }
             return INSTANCE

@@ -5,6 +5,7 @@
     <color name="cyan_3">#007575</color>
     <color name="blue_1">#002BAA</color>
     <color name="blue_2">#001963</color>
+    <color name="tr_bg">#40000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

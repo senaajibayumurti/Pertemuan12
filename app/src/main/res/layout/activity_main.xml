@@ -1,53 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="24dp"
-    android:paddingHorizontal="16dp"
     tools:context=".MainActivity">
-
-    <EditText
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="24dp"
+        android:paddingHorizontal="16dp"
 
-        android:id="@+id/et_title"
-        android:hint="Title"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/rv_toDo"
+        tools:listitem="@layout/adapter_to_do"
 
-        android:id="@+id/et_desc"
-        android:hint="Description"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="24dp"
+
+        android:id="@+id/btn_add"
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginVertical="16dp">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="8dp"
+        android:layout_height="match_parent"
+        android:paddingTop="24dp"
+        android:paddingHorizontal="16dp"
+        android:background="@color/tr_bg"
+        android:orientation="vertical"
+        android:gravity="bottom"
 
-            android:id="@+id/btn_add"
-            android:text="Tambah Data"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
+        android:id="@+id/lv_toDo_form"
+        android:visibility="visible"
 
-            android:id="@+id/btn_done"
-            android:text="Kosongkan Data"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+
+                android:id="@+id/btn_close_form"
+                android:text="CLOSE"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:paddingHorizontal="16dp"
+
+                android:id="@+id/et_toDo_name"
+                android:hint="Name"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:paddingHorizontal="16dp"
+
+                android:id="@+id/et_toDo_date"
+                android:inputType="date"
+                android:hint="Date"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/btn_submit"
+                android:text="Button"/>
+        </LinearLayout>
     </LinearLayout>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/lv_item"/>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
