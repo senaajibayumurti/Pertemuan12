@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ListView
 import com.example.pertemuan12.databinding.ActivityMainBinding
-import java.util.concurrent.AbstractExecutorService
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mNoteDao: NoteDao
+    private lateinit var mToDoDao: ToDoDao
     private lateinit var executorService: ExecutorService
     private var updateId : Int = 0
     private lateinit var binding: ActivityMainBinding
@@ -23,38 +21,38 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         executorService = Executors.newSingleThreadExecutor()
-        val db = NoteRoomDatabase.getDatabase(this)
-        mNoteDao = db!!.noteDao()!!
+        val db = ToDoRoomDatabase.getDatabase(this)
+        mToDoDao = db!!.noteDao()!!
 
         with(binding){
             btnAdd.setOnClickListener {
                 insert(
-                    Note(
-                    title = etTitle.text.toString(),
-                    description = etDesc.text.toString())
+                    ToDo(
+                    toDo_name = etTitle.text.toString(),
+                    toDo_date = etDesc.text.toString())
                 )
                 setEmptyField()
             }
             lvItem.setOnItemClickListener {
                 adapterView, _, i, _->
-                val item = adapterView.adapter.getItem(i) as Note
+                val item = adapterView.adapter.getItem(i) as ToDo
                 updateId = item.id
-                etTitle.setText(item.title)
-                etDesc.setText(item.description)
+                etTitle.setText(item.toDo_name)
+                etDesc.setText(item.toDo_date)
             }
             btnDelete.setOnClickListener {
                 update(
-                    Note(
+                    ToDo(
                     id = updateId,
-                    title = etTitle.text.toString(),
-                    description = etDesc.text.toString()))
+                    toDo_name = etTitle.text.toString(),
+                    toDo_date = etDesc.text.toString()))
                 updateId = 0
                 setEmptyField()
             }
             lvItem.onItemClickListener =
                 AdapterView.OnItemClickListener{
                     adapterView: AdapterView<*>?, view: View?, i: Int, l: Long ->
-                    val item = adapterView!!.adapter.getItem(i) as Note
+                    val item = adapterView!!.adapter.getItem(i) as ToDo
                     delete(item)
                     true
                 }
@@ -67,30 +65,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getAllNotes(){
-        mNoteDao.allNote.observe(this){
+        mToDoDao.allToDo.observe(this){
             notes ->
-            val adapter: ArrayAdapter<Note> =
-                ArrayAdapter<Note>(this, android.R.layout.simple_list_item_1,
+            val adapter: ArrayAdapter<ToDo> =
+                ArrayAdapter<ToDo>(this, android.R.layout.simple_list_item_1,
                 notes)
             binding.lvItem.adapter = adapter
         }
     }
 
-    private fun insert(note: Note){
+    private fun insert(toDo: ToDo){
         executorService.execute{
-            mNoteDao.insert(note)
+            mToDoDao.insert(toDo)
         }
     }
 
-    private fun update(note: Note){
+    private fun update(toDo: ToDo){
         executorService.execute{
-            mNoteDao.update(note)
+            mToDoDao.update(toDo)
         }
     }
 
-    private fun delete(note: Note){
+    private fun delete(toDo: ToDo){
         executorService.execute{
-            mNoteDao.delete(note)
+            mToDoDao.delete(toDo)
         }
     }
 

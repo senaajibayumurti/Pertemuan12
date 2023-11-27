@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:layout_marginStart="8dp"
 
-            android:id="@+id/btn_delete"
+            android:id="@+id/btn_done"
             android:text="Kosongkan Data"/>
     </LinearLayout>
 

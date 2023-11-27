@@ -4,17 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface NoteDao {
+interface ToDoDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(note: Note)
+    fun insert(toDo: ToDo)
 
     @Update
-    fun update(note: Note)
+    fun update(toDo: ToDo)
 
     @Delete
-    fun delete(note: Note)
+    fun delete(toDo: ToDo)
 
     @get:Query("SELECT * from note_table ORDER BY id ASC")
-    val allNote: LiveData<List<Note>>
+    val allToDo: LiveData<List<ToDo>>
 }

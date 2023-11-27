@@ -4,16 +4,20 @@ import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.sql.Date
 
 @Entity(tableName = "note_table")
-data class Note (
+data class ToDo (
     @PrimaryKey(autoGenerate = true)
     @NonNull
     val id: Int = 0,
 
-    @ColumnInfo(name = "title")
-    val title: String,
+    @ColumnInfo(name = "toDo_name")
+    var toDo_name: String,
 
-    @ColumnInfo(name = "description")
-    val description: String
+    @ColumnInfo(name = "toDo_status")
+    var toDo_status: String,
+
+    @ColumnInfo(name = "toDo_date")
+    var toDo_date: Date
     )
