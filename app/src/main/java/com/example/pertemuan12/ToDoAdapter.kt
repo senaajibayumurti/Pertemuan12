@@ -8,7 +8,6 @@ import java.util.concurrent.ExecutorService
 
 typealias OnClick = (ToDo) -> Unit
 class ToDoAdapter (private var toDoList: List<ToDo>,
-                   private val onClick: OnClick,
                    private val executorService: ExecutorService
 ): RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
     lateinit var mToDoDao: ToDoDao
@@ -22,9 +21,6 @@ class ToDoAdapter (private var toDoList: List<ToDo>,
                 txtToDoDate.text = item.toDo_date.toString()
                 btnDone.setOnClickListener {
                     delete(item)
-                }
-                itemView.setOnClickListener {
-                    onClick(item)
                 }
             }
         }

@@ -2,12 +2,10 @@ package com.example.pertemuan12
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pertemuan12.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.ExecutorService
@@ -17,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mToDoDao: ToDoDao
     private lateinit var executorService: ExecutorService
     private lateinit var binding: ActivityMainBinding
-    private var updateId : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,29 +33,14 @@ class MainActivity : AppCompatActivity() {
             }
             btnSubmit.setOnClickListener {
                 val dateString = etToDoDate.text.toString()
-
-                if (btnSubmit.text.toString() == getString(R.string.add)) {
-                    Log.d("InsertButtonClicked", "Insert button clicked. Will perform insert operation.")
-                    insert(
-                        ToDo(
-                            toDo_name = etToDoName.text.toString(),
-                            toDo_date = dateString,
-                            toDo_status = statusDefaultValue(toDoDateString = dateString)
-                        )
+                insert(
+                    ToDo(
+                        toDo_name = etToDoName.text.toString(),
+                        toDo_date = dateString,
+                        toDo_status = statusDefaultValue(toDoDateString = dateString)
                     )
-                    setEmptyField()
-                } else if (btnSubmit.text.toString() == getString(R.string.save)){
-                    Log.d("UpdateButtonClicked", "Update button clicked. Will perform update operation.")
-                    update(
-                        ToDo(
-                            id = updateId,
-                            toDo_name = etToDoName.text.toString(),
-                            toDo_date = dateString,
-                            toDo_status = statusDefaultValue(toDoDateString = dateString)
-                        )
-                    )
-                    updateId = 0
-                }
+                )
+                setEmptyField()
             }
             btnCloseForm.setOnClickListener{
                 setEmptyField()
@@ -75,10 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAllToDos() {
         mToDoDao.allToDo.observe(this) { toDos ->
-            val toDoAdapter = ToDoAdapter(toDos, { selectedToDo ->
-                editForm(selectedToDo)
-                update(selectedToDo)
-            }, executorService)
+            val toDoAdapter = ToDoAdapter(toDos, executorService)
 
             toDoAdapter.mToDoDao = mToDoDao
 
@@ -87,20 +66,6 @@ class MainActivity : AppCompatActivity() {
                     layoutManager = LinearLayoutManager(this@MainActivity)
                     adapter = toDoAdapter
                 }
-            }
-        }
-    }
-
-
-    private fun editForm(toDo: ToDo?) {
-        toDo?.let { selectedToDo ->
-            with(binding) {
-                btnAdd.visibility = View.GONE
-                lvToDoForm.visibility = View.VISIBLE
-                btnSubmit.text = getString(R.string.save)
-
-                etToDoName.setText(selectedToDo.toDo_name)
-                etToDoDate.setText(selectedToDo.toDo_date)
             }
         }
     }

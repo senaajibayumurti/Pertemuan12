@@ -8,9 +8,6 @@
     <string name="add">
         "ADD"
     </string>
-    <string name="save">
-        "SAVE"
-    </string>
     <string-array name="status">
         <item>Going</item>
         <item>Due</item>
