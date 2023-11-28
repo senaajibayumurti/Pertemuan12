@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="cyan_1">#00FFFF</color>
-    <color name="cyan_2">#02B5B5</color>
+    <color name="cyan_2">#00FFFF</color>
     <color name="cyan_3">#007575</color>
     <color name="blue_1">#002BAA</color>
     <color name="blue_2">#001963</color>
+
+    <color name="red_1">#FF0000</color>
+    <color name="red_2">#FFB8B8</color>
+    <color name="yellow_1">#FFE500</color>
+    <color name="yellow_2">#FFF9C9</color>
+    <color name="green_1">#00FF0A</color>
+    <color name="green_2">#C2FFC4</color>
+
     <color name="tr_bg">#40000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

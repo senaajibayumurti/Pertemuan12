@@ -94,16 +94,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun insert(toDo: ToDo){
         executorService.execute{
             mToDoDao.insert(toDo)
-        }
-    }
-
-    private fun update(toDo: ToDo){
-        executorService.execute{
-            mToDoDao.update(toDo)
         }
     }
 

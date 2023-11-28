@@ -2,6 +2,7 @@ package com.example.pertemuan12
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pertemuan12.databinding.AdapterToDoBinding
 import java.util.concurrent.ExecutorService
@@ -21,6 +22,24 @@ class ToDoAdapter (private var toDoList: List<ToDo>,
                 txtToDoDate.text = item.toDo_date.toString()
                 btnDone.setOnClickListener {
                     delete(item)
+                }
+                when (item.toDo_status) {
+                    "Going" -> {
+                        txtToDoStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.green_1))
+                        txtToDoStatus.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.green_2))
+                    }
+                    "Due" -> {
+                        txtToDoStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.yellow_1))
+                        txtToDoStatus.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.yellow_2))
+                    }
+                    "Overdue" -> {
+                        txtToDoStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_1))
+                        txtToDoStatus.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.red_2))
+                    }
+                    else -> {
+                        txtToDoStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
+                        txtToDoStatus.setBackgroundColor(ContextCompat.getColor(itemView.context, android.R.color.transparent))
+                    }
                 }
             }
         }

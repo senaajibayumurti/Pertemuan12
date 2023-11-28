@@ -9,13 +9,15 @@
     android:orientation="horizontal"
     tools:context=".ToDoAdapter">
     <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:gravity="center"
+        android:background="@color/red_2"
 
         android:id="@+id/txt_toDo_status"
         android:textSize="16sp"
-        android:text="Status"
+        android:text="Overdue"
+        android:textColor="@color/red_1"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +38,8 @@
             android:layout_height="wrap_content"
 
             android:id="@+id/txt_toDo_name"
-            android:textSize="24sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:text="To Do Name" />
         <TextView
             android:layout_width="wrap_content"
@@ -52,6 +55,7 @@
         android:layout_height="48dp"
 
         android:id="@+id/btn_done"
+        android:background="@drawable/done_icon"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
